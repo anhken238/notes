@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><a href="/home"> Back Home </a></p><br>
+<p><a href="/create-user"> Register new Account </a></p>
+
+<h1>User</h1>
+<table border="1">
+    <tr>
+        <th>Name User</th>
+
+    </tr>
+    <th:block th:each="user : ${users}">
+        <tr>
+            <td><a th:href="@{/view-category/__${user.id}__}" th:text="${user.name}"></a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Simple Contact Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: "Open Sans", sans-serif;
+        }
+        .contact-form {
+            padding: 50px;
+            margin: 30px 0;
+        }
+        .contact-form h1 {
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+        .contact-form .form-control, .contact-form .btn  {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+        .contact-form .btn-primary {
+            min-width: 150px;
+            background: #299be4;
+            border: none;
+        }
+        .contact-form .btn-primary:hover {
+            background: #1c8cd7;
+        }
+        .contact-form label {
+            opacity: 0.9;
+        }
+        .contact-form textarea {
+            resize: vertical;
+        }
+        .hint-text {
+            font-size: 15px;
+            padding-bottom: 15px;
+            opacity: 0.8;
+        }
+        .bs-example {
+            margin: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 m-auto">
+            <div class="contact-form">
+                <th:block th:if="${message}">
+                    <p style="color: green;" th:text="${message}"></p>
+                </th:block>
+                <h1>Sửa ghi chú</h1>
+                <p class="hint-text">Hãy nhớ quan tâm ghi chú của mình để nạp kiến thức hằng ngày.</p>
+                <form th:action="@{/edit-note}" th:object="${note}" method="post">
+                    <input th:type="hidden" name="id" th:field="*{id}">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputFirstName">Tên Ghi Chú</label>
+                                <input th:field="*{nameNote}" class="form-control" id="inputFirstName" required>
+                                <p style="color: red;" th:if="${#fields.hasErrors('nameNote')}" th:errors="*{nameNote}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label >Danh Mục</label>
+                            <select name="category">
+                                <option th:each="p : ${categories}"
+                                        th:value="${p.id}"
+                                        th:text="${p.nameCategory}"
+                                        th:selected="(${p.id} == *{category.id})"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <label for="inputMessage">Nội Dung</label>
+                            <textarea  th:field="*{content}" class="form-control" id="inputMessage" rows="7" required></textarea>
+                            <p style="color: red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Cập Nhật"> <i class="fa fa-paper-plane"></i><a href="/list-note" class="btn-block btn-lg"></a>
+                    <i class="fa fa-paper-plane"></i><a href="/list" class="btn btn-primary btn-block btn-lg"> Trở Lại</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Edit Post</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Edit Note</h1>-->
+<!--    <p>-->
+<!--        <a href="/list-note">Note list</a>-->
+<!--    </p>-->
+<!--    <th:block th:if="${message}">-->
+<!--        <p th:text="${message}"></p>-->
+<!--    </th:block>-->
+<!--    <form th:action="@{/edit-note}" th:object="${note}" method="post">-->
+<!--        <input th:type="hidden" name="id" th:field="*{id}">-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <td> name:</td>-->
+<!--                <td><input type="text" th:field="*{nameNote}"/></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>content:</td>-->
+<!--                <td><input type="text" th:field="*{content}"/></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Category:</td>-->
+<!--                <td>-->
+<!--                    <select name="category">-->
+<!--                        <option th:each="p : ${categories}"-->
+<!--                                th:value="${p.id}"-->
+<!--                                th:text="${p.nameCategory}"-->
+<!--                                th:selected="(${p.id} == *{category.id})"></option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td></td>-->
+<!--                <td><input type="submit" value="Update Note"></td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->

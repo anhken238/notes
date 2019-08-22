@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web_Design</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+
+    <link rel="stylesheet" th:href="@{resource/home/css/aos.css}">
+
+    <link rel="stylesheet" th:href="@{resource/home/css/style.css}">
+</head>
+
+
+<header class="fixed-top p-auto">
+    <div class="container">
+        <nav class="navbar navbar-expand p-0">
+            <a class="navbar-brand mr-0 pr-4" href="homes.html">
+                <i class="fa fa-heart"></i>
+            </a>
+            <a href="javascript:void(0)" id="cls-btn">&times;</a>
+            <div class="navbar-collapse nav-sec" id="sidenav">
+                <ul class="navbar-nav mr-auto header-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link active text-white" href="/home">
+                            Trang Chủ
+                        </a>
+                    </li>
+
+                    <th:block th:if="${#lists.isEmpty(session.myUser)}">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/create-user">
+                                Đăng Ký
+                            </a>
+                        </li>
+                    </th:block>
+
+                    <!--                    <li class="nav-item">-->
+                    <!--                        <a class="nav-link text-white" th:text="${session.myUser}">-->
+                    <!--                        </a>-->
+                    <!--                    </li>-->
+                    <th:block th:unless="${#lists.isEmpty(session.myUser)}">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/category">
+                                Danh Mục
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" th:text="${session.myUser}">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/logout">
+                                Đăng Xuất
+                            </a>
+                        </li>
+                    </th:block>
+
+                </ul>
+<!--                <div class="search-box mr-lg-0">-->
+<!--                    <input type="text" placeholder="Search here..." name="search1">-->
+<!--                    <button type="submit"><i class="fa fa-search"></i></button>-->
+<!--                    </form>-->
+<!--                </div>-->
+                <div class="menu-icon d-lg-none">
+                    <span class="ml-auto"></span>
+                    <span class="ml-auto"></span>
+                    <span class="ml-auto"></span>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="banner">
+    <div class="container" data-aos="fade-up" data-aos-duration="1000">
+        <h2>Trang web này giúp bạn quản lý các ghi chú tốt hơn.</h2>
+        <h6>Hãy phản hồi với chúng tôi nếu bạn không vừa lòng, Cảm ơn !</h6>
+        <th:block th:if="${#lists.isEmpty(session.myUser)}">
+            <li class="nav-item">
+                <a href="/login" class="get-started-btn">Đăng Nhập</a>
+            </li>
+<!--        <a href="/list-note" class="get-started-btn">get started</a>-->
+        </th:block>
+        <th:block th:unless="${#lists.isEmpty(session.myUser)}">
+            <li class="nav-item">
+                <a href="/list-note" class="get-started-btn">Bắt Đầu Nào</a>
+            </li>
+        </th:block>
+    </div>
+</section>
+
+
+
+
+
+<footer>
+    <div class="layer">
+        <div class="container">
+            <nav class="navbar navbar-expand  p-0">
+                <a class="navbar-brand mr-0 pr-2 pr-sm-4" href="index.html">
+                    <i class="fa fa-heart"></i>
+                </a>
+                <div class="nav-sec">
+                    <ul class="ml-md-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link active text-black" href="homes.html">
+                                Trang Chủ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">
+                                Thông tin về chúng tôi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">
+                                Dịch Vụ
+                            </a>
+                        </li>
+
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="portfolio.html">-->
+<!--                                Portfolio-->
+<!--                            </a>-->
+<!--                        </li>-->
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">
+                                Liên Lạc
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="support.html">
+                                Hỗ Trợ
+                            </a>
+                        </li>
+                        <li>
+                            <p class="m-0"> ©2018, All Rights Reserved. Designed By Admin</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</footer>
+
+
+<button class="scrolltop-btn">
+    <i class="fa fa-angle-up"></i>
+</button>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script th:src="@{resource/home/js/script.js}"></script>
+
+<script>
+    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+</script>
+
+</body>
+
+</html>
